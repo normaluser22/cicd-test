@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        strDockerImage = "normaluser22/cicd-test:0.1"
+        strDockerImage = "kimsame/cicd-test:0.1"
     }
 
     stages {
