@@ -11,9 +11,14 @@ pipeline {
 
         stage('Git clone end') {
             steps {
-                // 한 줄의 쉘 스크립트로 파일 생성 및 내용 기록
+                sh 'touch cicd_test.txt'
                 sh 'echo "git clone end" > cicd_test.txt'
             }
         }
+        stage('Deploy Server') {
+            sshagent(credentials:['Deploy-Privatekey']){
+                sh "scp -o StrictHostKeyChecking=no index.html ubuntu@52.79.166.126:/var/www/html/"  
+            }
+        }
     }
-} // pipeline 블록 닫기
+}
